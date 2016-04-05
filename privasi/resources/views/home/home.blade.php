@@ -90,47 +90,44 @@
             
                 <div class="row">
                 <div class="ccol-xs-12 col-md-8">
+                @foreach($data as $row)
                        <div class="panel panel-default">
                          <div class="panel-body">
                            <div class="page-header" style="margin-top:5px; text-decoration:none;">
-                             <h4><a href="">judul berita</a><br>
-                                <small>Posted by </small><small>22 April, 2016</small>
+                             <h4><a href="">{{$row->judul }}</a><br>
+                                <small>Posted by <span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{$row->posted_at}}</small> <small><span class="glyphicon glyphicon-time" aria-hidden="true"></span> {{$row->waktu}}</small>
                              </h4>
                              <p class="text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+                                
+                             <img src="{{ url('uploads/image/'.$row->image) }}" class="img-responsive" >
+                                
                              </p>
                            </div>
                          </div>
                        </div>
+                @endforeach
+                         
+                <div class="panel panel-default">
+                  <div class="panel-body">
+                      <nav>
+                        <ul class="pager">
+                          <li><a href="{!! $data->previousPageUrl() !!}">Previous</a></li>
+                          <li><a href="{!! $data->nextPageUrl() !!}">Next</a></li>
+                        </ul>
 
-                         <div class="panel panel-default">
-                         <div class="panel-body">
-                           <div class="page-header" style="margin-top:5px; text-decoration:none;">
-                             <h4><a href="">judul berita</a><br>
-                                <small>Posted by </small><small>22 April, 2016</small>
-                             </h4>
-                             <p class="text-justify">
-                                Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-                                tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-                                quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-                                consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-                                cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-                                proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-                             </p>
-                           </div>
-                         </div>
-                       </div>
+                  </div>
+                </div>
 
+                    
 
+                      </nav>
+                                             
                 </div>
 
   @section('side')
     @parent
+
+  
 
 @endsection
 

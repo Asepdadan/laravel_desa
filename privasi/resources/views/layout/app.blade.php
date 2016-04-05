@@ -38,7 +38,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
-                    <strong>Profile desa cihapit kecamatan tamansari kota bandung</strong>
+                    <strong>Profile Kelurahan cihapit kecamatan Bandung  Wetan kota bandung</strong>
                 </div>
                  <div class="col-xs-12 col-sm-6">
                     &nbsp;&nbsp;
@@ -66,14 +66,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="" >
-                    <img src="assets/img/64-64.jpg" style="margin-bottom:50px;"/>
+                    <img src="assets/img/kota_logo.png" style="margin-bottom:50px;" width="100" height="70" />
                 </a>
                 
                 </div>          
             </div>
             <div class="col-xs-12 col-sm-7">
-                <h3 style="color:black; font-weight:bold;">DESA CIHAPIT KECAMATAN BANDUNG WETAN</h3>
-                  <h5 style="color:black; text-align:center; ">Alamat : jl. sabang samapai merauke jl no 1234 telp 2313454 kode post</h5>
+                <h3 style="color:black; font-weight:bold;">KELURAHAN CIHAPIT KECAMATAN BANDUNG WETAN</h3>
+                  <h5 style="color:black; text-align:center; ">Alamat : jl. sabang No 2A Bandung kode pos 40114 telp (022) 4212984</h5>
             </div>
             <div class="col-xs-12 col-sm-3">
 
@@ -123,7 +123,7 @@
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Peta Wilayah <b class="caret"></b></a>
                             <ul class="dropdown-menu">
                                 <li>
-                                    <a href="-1-col.html">Lokasi</a>
+                                    <a href="{{ URL::to('/lokasi') }}">Lokasi</a>
                                 </li>
                                 <li>
                                     <a href="-2-col.html">Kondisi Existing</a>
@@ -140,6 +140,9 @@
                                 </li>
                                 <li>
                                     <a href="-#">Moto</a>
+                                </li>
+                                  <li>
+                                    <a href="{{URL::to('/sejarah') }}">Sejarah</a>
                                 </li>
                                 <li>
                                     <a href="{{ URL::to('/data-statis') }}">Data Statis</a>
@@ -197,50 +200,15 @@
                 <div class="col-xs-12 col-md-4">
                     <div class="panel panel-info">
                     <div class="panel-heading">
-                      <h3 class="panel-title">Bapak Lurah</h3>
+                      <h3 class="panel-title">Lurah Cihapit</h3>
+                      Drs. Iwan Gunawan Herman<br>
+                      NIP : 19600405 199003 1 005
                     </div>
                     <div class="panel-body">
-                      <img src="assets/img/pak_lurah.jpg" alt="" class="img-responsive" width="340">
+                      <img src="assets/img/Pak_lurah.jpg" alt="" class="img-responsive" width="340">
                     </div>
                   </div>
 
-                </div>
-                
-                <div class="row">
-                 
-                
-                <div class="col-xs-12 col-md-4">
-                    <div class="panel panel-info">
-                    <div class="panel-heading">
-                      <h3 class="panel-title">Bapak Lurah</h3>
-                    </div>
-                    <div class="panel-body">
-                                        <!-- Insert to your webpage where you want to display the slider -->
-                          <div id="amazingslider-wrapper-1" class="slider" >
-                                <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
-                                    <ul class="amazingslider-slides" style="display:none;">
-                                        <li><img src="assets/images/bg05-freshy-water-01.jpg" alt="bg05-freshy-water-01"  title="bg05-freshy-water-01" />
-                                        </li>
-                                        <li><img src="assets/images/Wallpaper%20pemandangan%20air%20terjun.jpg" alt="Wallpaper pemandangan air terjun"  title="Wallpaper pemandangan air terjun" />
-                                        </li>
-                                        <li><img src="assets/images/water-wide-hd-wallpaper-for-desktop-background-download-water-images.jpg" alt="water-wide-hd-wallpaper-for-desktop-background-download-water-images"  title="water-wide-hd-wallpaper-for-desktop-background-download-water-images" />
-                                        </li>
-                                    </ul>
-                                    
-                                <!-- <div class="amazingslider-engine"><a href="http://amazingslider.com" title="JavaScript Slideshow">JavaScript Slideshow</a></div> -->
-                                </div>
-                            </div>
-                        <!-- End of body section HTML codes -->
-
-
-
-                
-                  </div>
-
-                </div>
-                   
-
-                </div>
                 </div>
                 
 

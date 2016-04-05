@@ -27,23 +27,7 @@
         {!! Html::style('assets/porto/assets/stylesheets/theme-custom.css') !!} 
 
         {!! Html::script('assets/porto/assets/vendor/modernizr/modernizr.js') !!} 
-
-        <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.css" />
-        <link rel="stylesheet" href="assets/vendor/font-awesome/css/font-awesome.css" />
-        <link rel="stylesheet" href="assets/vendor/magnific-popup/magnific-popup.css" />
-        <link rel="stylesheet" href="assets/vendor/bootstrap-datepicker/css/datepicker3.css" />
-
-        <!-- Theme CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/theme.css" />
-
-        <!-- Skin CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/skins/default.css" />
-
-        <!-- Theme Custom CSS -->
-        <link rel="stylesheet" href="assets/stylesheets/theme-custom.css">
-
-        <!-- Head Libs -->
-        <script src="assets/vendor/modernizr/modernizr.js"></script>
+        {!! Html::script('assets/porto/assets/vendor/bootstrap-datepicker/css/datepicker3.css') !!} 
 
     </head>
     <body>
@@ -78,7 +62,7 @@
                         <li>
                             <a href="#" class="dropdown-toggle notification-icon" data-toggle="dropdown">
                                 <i class="fa fa-tasks"></i>
-                                <span class="badge">3</span>
+                                <span class="badge">{{  Helpers::Hitung('L')  }}</span>
                             </a>
             
                             <div class="dropdown-menu notification-menu large">
@@ -348,7 +332,7 @@
                                         </a>
                                         <ul class="nav nav-children">
                                             <li>
-                                                <a>First Level</a>
+                                                <a>Posting Berita</a>
                                             </li>
                                             <li class="nav-parent">
                                                 <a>Second Level</a>
@@ -426,7 +410,9 @@
                                             <a href="#" class="fa fa-caret-down"></a>
                                             <a href="#" class="fa fa-times"></a>
                                         </div>
-                        
+                                    
+
+
                                         <h2 class="panel-title">Form Wizard</h2>
                                     </header>
                                     <div class="panel-body">
@@ -601,10 +587,87 @@
                                     <div id="popular" class="tab-pane active">
                                         <p>Popular</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
+                                        <form class="form-horizontal form-bordered" action="#">
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Default Spinner</label>
+                                                <div class="col-md-6">
+                                                    <div data-plugin-spinner>
+                                                        <div class="input-group input-small">
+                                                            <input type="text" class="spinner-input form-control" readonly="readonly">
+                                                            <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                                <button type="button" class="btn spinner-up btn-xs btn-default">
+                                                                    <i class="fa fa-angle-up"></i>
+                                                                </button>
+                                                                <button type="button" class="btn spinner-down btn-xs btn-default">
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Disabled</label>
+                                                <div class="col-md-6">
+                                                    <div data-plugin-spinner data-plugin-options='{ "disabled": true }'>
+                                                        <div class="input-group input-small">
+                                                            <input type="text" class="spinner-input form-control" maxlength="3" >
+                                                            <div class="spinner-buttons input-group-btn btn-group-vertical">
+                                                                <button type="button" class="btn spinner-up btn-xs">
+                                                                    <i class="fa fa-angle-up"></i>
+                                                                </button>
+                                                                <button type="button" class="btn spinner-down btn-xs">
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Horizontal buttons</label>
+                                                <div class="col-md-6">
+                                                    <div data-plugin-spinner data-plugin-options='{ "value":0, "min": 0, "max": 10 }'>
+                                                        <div class="input-group" style="width:150px;">
+                                                            <input type="text" class="spinner-input form-control" maxlength="3" >
+                                                            <div class="spinner-buttons input-group-btn">
+                                                                <button type="button" class="btn btn-default spinner-up">
+                                                                    <i class="fa fa-angle-up"></i>
+                                                                </button>
+                                                                <button type="button" class="btn btn-default spinner-down">
+                                                                    <i class="fa fa-angle-down"></i>
+                                                                </button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <p>
+                                                        with <code>max</code> value set to 10
+                                                    </p>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <label class="col-md-3 control-label">Date range</label>
+                                                <div class="col-md-6">
+                                                    <div class="input-daterange input-group" data-plugin-datepicker>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="text" class="form-control" name="start">
+                                                        <span class="input-group-addon">to</span>
+                                                        <input type="text" class="form-control" name="end">
+                                                    </div>
+                                                </div>
+                                            </div>
+                        
+                                        </form>
                                     </div>
                                     <div id="recent" class="tab-pane">
                                         <p>Recent</p>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitat.</p>
+                                    
+
+
+
                                     </div>
                                     <div id="usia" class="tab-pane">
                                         <p>Usia</p>
@@ -678,6 +741,11 @@
         {!! Html::script('assets/porto/assets/vendor/bootstrap-wizard/jquery.bootstrap.wizard.js') !!} 
         {!! Html::script('assets/porto/assets/vendor/pnotify/pnotify.custom.js') !!} 
         {!! Html::script('assets/porto/assets/javascripts/forms/examples.wizard.js') !!} 
+        {!! Html::script('assets/porto/assets/javascripts/forms/examples.wizard.js') !!} 
+        {!! Html::script('assets/porto/assets/vendor/fuelux/js/spinner.js') !!} 
+        {!! Html::script('assets/porto/assets/vendor/bootstrap-timepicker/js/bootstrap-timepicker.js') !!}
+        
+
 
     </body>
 </html>

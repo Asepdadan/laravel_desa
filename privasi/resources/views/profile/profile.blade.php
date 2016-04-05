@@ -109,7 +109,7 @@
                                         </tbody>
                                       </table>
                                     </div>
-                                    <h5>Data Kondisi Kantor Kelurahan</h5>
+                                    <h5>Data Sarana Kerja Kantor Kelurahan</h5>
 
                                     <div class="table-responsive">
                                       <table class="table table-bordered">
@@ -122,78 +122,15 @@
                                           </tr>
                                         </thead>
                                         <tbody>
+                                        <?php  $no = 1  ?>
+                                        @foreach($data as $row)
                                           <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $row->uraian}}</td>
+                                            <td>{{ $row->jumlah}}</td>
+                                            <td>{{ $row->keterangan}}</td>
                                           </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
-                                          <tr>
-                                            <td>1</td>
-                                            <td></td>
-                                            <td></td>
-                                            <td></td>
-                                          </tr>
+                                         @endforeach
                                         </tbody>
                                       </table>
                                     </div>
@@ -423,7 +360,7 @@
 
 
 
-                         </div>
+                         </div> <!-- panel body -->
                        </div>
 
                        
@@ -432,7 +369,44 @@
 
 @section('side')
     @parent
-        
+       @section('slider')
+                <div class="row">
+                 
+                
+                <div class="col-xs-12 col-md-4">
+                    <div class="panel panel-info">
+                    <div class="panel-heading">
+                      <h3 class="panel-title">Bapak Lurah</h3>
+                    </div>
+                    <div class="panel-body">
+                                        <!-- Insert to your webpage where you want to display the slider -->
+                          <div id="amazingslider-wrapper-1" class="slider" >
+                                <div id="amazingslider-1" style="display:block;position:relative;margin:0 auto;">
+                                    <ul class="amazingslider-slides" style="display:none;">
+                                        <li><img src="assets/images/bg05-freshy-water-01.jpg" alt="bg05-freshy-water-01"  title="bg05-freshy-water-01" />
+                                        </li>
+                                        <li><img src="assets/images/Wallpaper%20pemandangan%20air%20terjun.jpg" alt="Wallpaper pemandangan air terjun"  title="Wallpaper pemandangan air terjun" />
+                                        </li>
+                                        <li><img src="assets/images/water-wide-hd-wallpaper-for-desktop-background-download-water-images.jpg" alt="water-wide-hd-wallpaper-for-desktop-background-download-water-images"  title="water-wide-hd-wallpaper-for-desktop-background-download-water-images" />
+                                        </li>
+                                    </ul>
+                                    
+                                <!-- <div class="amazingslider-engine"><a href="http://amazingslider.com" title="JavaScript Slideshow">JavaScript Slideshow</a></div> -->
+                                </div>
+                            </div>
+                        <!-- End of body section HTML codes -->
+
+
+
+                
+                  </div>
+
+                </div>
+                   
+
+                </div>
+                </div>
+                @show   
 @endsection
 
 @endsection
