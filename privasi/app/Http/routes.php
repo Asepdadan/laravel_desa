@@ -197,6 +197,8 @@ $sheet->row(12, array(
 
 
 });
+
+Route::get('exports','Export@export');
 // query
 
 //SELECT * FROM `tbl_jumlah_agama` WHERE month(waktu) = month(now())
@@ -291,11 +293,37 @@ Route::get('testing',function(){
  $wni = DB::table('tbl_jumlah_umpi')
                     ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
                     ->sum('WNI');
+$a = DB::table('tbl_jumlah_agama')
+                            ->where('agama_id', 1)
+                            ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
+                            ->sum('jumlah');
 
+$laki_laki_awal = DB::table('tbl_jumlah_penduduk')
+                            ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
+                            ->sum('L');
+$laki_laki_lahir = DB::table('tbl_lahir')
+                            ->where('penduduk', 'WNA')
+                            ->whereBetween('waktu', ['2016-03-01', '2016-04-07'])
+                            ->sum('L');
                     
               
                     echo $users;
                     echo $wni;
 $jum = collect([$wni,$users])->sum();
 echo $jum;
+
+echo "agama :".$a;
+echo "laki".$laki_laki_awal;
+echo "lahir".$laki_laki_lahir;
+
+  
+$dt = new DateTime();
+$dt->setTimezone(new DateTimeZone('Asia/jakarta'));
+echo $dt->format('Y-m-d H:i:s');
+echo "<br>";
+echo date('Y-m-d');
+echo "<br>";
+echo "Bulan";
+echo "<br>";
+echo date('Y-m-d', strtotime(date('Y-m-d') . '- 1 month'));
 });

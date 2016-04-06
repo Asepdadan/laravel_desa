@@ -49,16 +49,13 @@
 </header>
     <!-- HEADER END-->
 
-
-
-
     <div class="navbar navbar-inverse set-radius-zero" style="background:#2062DD; height:90px;">
 
     <div class="top">
 
         <div class="container">
         <div class="row">
-            <div class="col-xs-12 col-sm-2">
+            <div class="col-xs-12 col-sm-1" >
             <div class="navbar-header" style="margin-bottom:30px;">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse" >
                     <span class="icon-bar"></span>
@@ -66,28 +63,17 @@
                     <span class="icon-bar"></span>
                 </button>
                 <a class="navbar-brand" href="" >
-                    <img src="assets/img/kota_logo.png" style="margin-bottom:50px;" width="100" height="70" />
+                    <img src="assets/img/kota_logo.png" style="margin-bottom:50px;" width="90" height="70" />
                 </a>
                 
                 </div>          
             </div>
-            <div class="col-xs-12 col-sm-7">
+            <div class="col-xs-12 col-sm-8">
                 <h3 style="color:black; font-weight:bold;">KELURAHAN CIHAPIT KECAMATAN BANDUNG WETAN</h3>
                   <h5 style="color:black; text-align:center; ">Alamat : jl. sabang No 2A Bandung kode pos 40114 telp (022) 4212984</h5>
             </div>
-            <div class="col-xs-12 col-sm-3">
-
+            <div class="col-xs-12 col-sm-2" style="margin-top:30px;">
             
-            <div class="input-group navbar-right" style="margin-top:50px; margin-bottom:10px; margin-right:10px;">
-                         
-              <input type="search" name="pencarian"  class="form-control"  required="required" >
-              <span class="input-group-btn">
-                <button class="btn btn-default" type="Submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-              </span>
-              
-            </div><!-- /input-group -->
-                
-
             </div>
             </div>
         </div>
@@ -180,7 +166,16 @@
                                 <!-- <li><a href="forms.html">Forms</a></li>
                                  <li><a href="login.html">Login Page</a></li>
                                 <li><a href="blank.html">Blank Page</a></li> -->
-                                
+                                <li>
+                                <div class="input-group navbar-right" style="margin-top:10px; margin-bottom:10px; margin-left:70px;">
+                         
+                                          <input type="search" name="pencarian"  class="form-control"  required="required" >
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-default" type="Submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                          </span>
+                                          
+                                        </div><!-- /input-group -->
+                                </li>
                         </ul>
                     </div>
                 </div>
