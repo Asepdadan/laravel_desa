@@ -14,6 +14,11 @@ use View;
 class PostingBerita extends Controller
 {
 
+  public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
     public function posting(){
         if (Input::hasFile('gambar'))
         {

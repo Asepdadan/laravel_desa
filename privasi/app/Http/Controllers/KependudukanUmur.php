@@ -14,6 +14,10 @@ use View;
 class KependudukanUmur extends Controller
 {
     //
+       public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
         public function umur(validasiUmur $validasi){
 

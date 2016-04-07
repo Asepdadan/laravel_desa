@@ -10,9 +10,14 @@
 
 @section('content')
 
-{{ Auth::user() }}
+@if(empty(Auth::user()))
 
-{{ Auth::user()->username }}
+
+
+
+@endif
+
+
  
 @stop
 

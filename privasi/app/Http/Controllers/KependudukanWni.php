@@ -14,6 +14,11 @@ use View;
 class KependudukanWni extends Controller
 {
     //
+       public function __construct()
+    {
+        $this->middleware('admin');
+    }
+
    public function action(validasiWni $validasi){
         
         DB::table('tbl_lahir')->insert(

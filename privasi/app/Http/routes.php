@@ -50,9 +50,7 @@ Route::get('/data-dinamis', function () {
 
 
 
-Route::get('/posting-berita', function () {
-    return view('admin/berita/berita');
-});
+
 
 
 Route::get('/kelola-berita', function () {
@@ -212,14 +210,27 @@ Route::get('exports','Export@export');
 | it contains. The "web" middleware group is defined in your HTTP
 | kernel and includes session state, CSRF protection, and more.
 |
+
 */
+Route::group(['middleware' => 'admin'], function () {
+    Route::get('/', function ()    {
+        // Uses Auth Middleware
+    });
+
+    Route::get('user/profile', function () {
+        // Uses Auth Middleware
+    });
+});
+
+
+
 
 Route::group(['middleware' => ['web']], function () {
     //
-    Route::get('/agama', function () {
+    Route::get('/agama', ['middleware' => 'admin',function () {
     $req = DB::table('tbl_agama')->get();
     return view('admin/kependudukan/agama')->with(array('data' => $req));
-});
+}]);
 Route::post('/ActionJumlahPenduduk', 'KependudukanAgama@action');
 Route::post('/ActionJumlahAgama', 'KependudukanAgama@actionAgama');
 
@@ -234,16 +245,17 @@ Route::get('/pendidikan_mata_pencaharian', function () {
 Route::post('/action_pendidikan','KependudukanPendidikan@pendidikan');
 Route::post('/action_pencaharian','KependudukanPendidikan@pencaharian');
 
+Route::get('/wna', ['middleware' => 'admin', function() {
+    // Only authenticated users may enter...
+     return view('admin/kependudukan/wna');
+}]);
 
-Route::get('/wna', function () {
-    return view('admin/kependudukan/wna');
-});
 Route::post('/action_wna','KependudukanWna@action');
 
 
-Route::get('/wni', function () {
+Route::get('/wni',['middleware' => 'admin', function () {
     return view('admin/kependudukan/wni');
-});
+}]);
 Route::post('/action_wni','KependudukanWni@action');
 
 
@@ -255,11 +267,7 @@ Route::post('/action_umur','KependudukanUmur@umur');
 
 
 
-Route::get('/dashbord',  function () {
-
-return view('admin/dashbord/dashboard');
-
-});
+Route::get('/dashbord',  'HomeController@index');
 
 Route::get('login',function(){
 return view('admin/login');
@@ -270,7 +278,9 @@ Auth::logout();
 return redirect('login')->with('message','Terima Kasih');
 });
 
-
+Route::get('/posting-berita', function () {
+    return view('admin/berita/berita');
+});
 
 
 });
@@ -332,3 +342,8 @@ echo "Bulan";
 echo "<br>";
 echo date('Y-m-d', strtotime(date('Y-m-d') . '- 1 month'));
 });
+
+
+Route::get('profile', ['middleware' => 'admin', function() {
+    // Only authenticated users may enter...
+}]);

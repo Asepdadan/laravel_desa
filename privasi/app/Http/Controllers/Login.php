@@ -20,7 +20,7 @@ class Login extends Controller
                 if(Auth::User()->hak_akses=="admin"){
                    return redirect('/dashbord');
                 }else{
-                    return redirect('/dashbord');
+                    return redirect('/posting-berita');
                     //return Auth::user();
                 }
 

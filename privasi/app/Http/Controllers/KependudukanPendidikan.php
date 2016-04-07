@@ -14,7 +14,10 @@ use View;
 class KependudukanPendidikan extends Controller
 {
     //
-
+  public function __construct()
+    {
+        $this->middleware('admin');
+    }
     public function pendidikan(validasiPendidikan $validasi){
 
         /*pendidikan wni 1*/

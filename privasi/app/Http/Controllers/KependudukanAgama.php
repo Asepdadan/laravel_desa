@@ -16,6 +16,10 @@ use View;
 class KependudukanAgama extends Controller
 {
     //
+   public function __construct()
+    {
+        $this->middleware('admin');
+    }
 
     public function action(validasiAgama $validasi){
         
