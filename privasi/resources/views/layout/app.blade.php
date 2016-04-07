@@ -69,11 +69,21 @@
                 </div>          
             </div>
             <div class="col-xs-12 col-sm-8">
-                <h3 style="color:black; font-weight:bold;">KELURAHAN CIHAPIT KECAMATAN BANDUNG WETAN</h3>
+                <h3 style="color:black; font-weight:bold;" class="text-center">KELURAHAN CIHAPIT KECAMATAN BANDUNG WETAN</h3>
                   <h5 style="color:black; text-align:center; ">Alamat : jl. sabang No 2A Bandung kode pos 40114 telp (022) 4212984</h5>
             </div>
-            <div class="col-xs-12 col-sm-2" style="margin-top:30px;">
+            <div class="col-xs-12 col-sm-3" style="margin-top:30px;">
             
+            <div class="input-group navbar-right" style="margin-top:10px; margin-bottom:10px; margin-left:70px;">
+                         
+                                          <input type="search" name="pencarian"  class="form-control"  required="required" >
+                                          <span class="input-group-btn">
+                                            <button class="btn btn-default" type="Submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                          </span>
+                                          
+                                        </div><!-- /input-group -->
+
+
             </div>
             </div>
         </div>
@@ -167,14 +177,7 @@
                                  <li><a href="login.html">Login Page</a></li>
                                 <li><a href="blank.html">Blank Page</a></li> -->
                                 <li>
-                                <div class="input-group navbar-right" style="margin-top:10px; margin-bottom:10px; margin-left:70px;">
-                         
-                                          <input type="search" name="pencarian"  class="form-control"  required="required" >
-                                          <span class="input-group-btn">
-                                            <button class="btn btn-default" type="Submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
-                                          </span>
-                                          
-                                        </div><!-- /input-group -->
+                                
                                 </li>
                         </ul>
                     </div>

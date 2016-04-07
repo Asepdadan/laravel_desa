@@ -6,25 +6,26 @@ use Illuminate\Http\Request;
 
 use Auth;
 use App\Http\Requests;
+use App\Http\Requests\validasiLogin;
 use Illuminate\Support\Facades\Input;
+use Redirect;
+
 
 class Login extends Controller
 {
     //
-    public function login(){
+    public function login(validasiLogin $validasi){
         if(Auth::attempt(['username' => Input::get('username'), 'password' => Input::get('password')])){
 
                 if(Auth::User()->hak_akses=="admin"){
-                    echo "admin kelurahan";
-                    return Auth::user();
+                   return redirect('/dashbord');
                 }else{
-                    echo "RW";
-                    return Auth::user();
+                    return redirect('/dashbord');
+                    //return Auth::user();
                 }
 
         }else{
-
-            echo "gagal login";
+             return Redirect::to('/login')->with('message', 'Login Gagal Username Atau Password Tidak Terdaftar');
         }
 
 

@@ -36,6 +36,15 @@
                         <h2 class="title text-uppercase text-bold m-none"><i class="fa fa-user mr-xs"></i> Form Login</h2>
                     </div>
                     <div class="panel-body">
+
+                    @if(Session::has('message'))
+                        <h4><span class="label label-success">{{ Session::get('message') }}</span></h4>
+                    @endif
+                      @if($errors->has())
+                        <h4><span class="label label-success">{!! $errors->first('username') !!}<br></span></h4>
+                        <h4><span class="label label-success">{!! $errors->first('password') !!}<br></span></h4>
+                       @endif
+
                         {!!  Form::open(['url' => 'login']) !!}
                             <div class="form-group mb-lg">
                                 <label>Username</label>

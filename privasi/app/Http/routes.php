@@ -56,7 +56,8 @@ Route::get('/posting-berita', function () {
 
 
 Route::get('/kelola-berita', function () {
-    return view('admin/berita/kelola');
+    $data = DB::table('tbl_berita')->get();
+    return view('admin/berita/kelola')->with(array('data' => $data));
 });
 
 
@@ -260,19 +261,23 @@ return view('admin/dashbord/dashboard');
 
 });
 
-
-});
-
-
-
 Route::get('login',function(){
 return view('admin/login');
 });
 Route::post('login','Login@login');
 route::get('logout',function(){
 Auth::logout();
-return redirect('login');
+return redirect('login')->with('message','Terima Kasih');
 });
+
+
+
+
+});
+
+
+
+
 Route::get('daftar',function(){
 
 DB::table('users')->insert(array(

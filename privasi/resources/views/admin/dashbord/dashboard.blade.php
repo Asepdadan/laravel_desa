@@ -10,6 +10,9 @@
 
 @section('content')
 
+{{ Auth::user() }}
+
+{{ Auth::user()->username }}
  
 @stop
 

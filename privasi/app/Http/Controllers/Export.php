@@ -14,7 +14,7 @@ class Export extends Controller
 
     public function export(){
 
-        $now = date('Y-m-d');
+        $now = date('Y-m-d h:i:s');
 
 Excel::create('Laporan Kependudukan Cihapit - '.$now, function($excel) {
 
@@ -28,9 +28,10 @@ Excel::create('Laporan Kependudukan Cihapit - '.$now, function($excel) {
         // setting text center
         $cells->setAlignment('center');
         });
-        $sheet->cells('A2:P2', function($cells) {
+        $sheet->cells('A1:P2', function($cells) {
         // setting text center
         $cells->setAlignment('center');
+        $cells->setFontWeight('bold');
         });
 
         //isian row 1
@@ -889,17 +890,143 @@ $bulanSebelumnya =  date('Y-m-d', strtotime(date('Y-m-d') . '- 1 month'));
 
 
 
-$totalPendudukLakiWni = collect([$laki_laki_awal_I,$laki_laki_awal])->sum();
-    
+$totalPendudukLaki = collect([$laki_laki_awal_I,$laki_laki_awal])->sum();
+$totalPendudukPerempuan = collect([$perempuan_awal_I,$perempuan_awal])->sum();
+$totaljumPenduduk = collect([$totalPendudukLaki,$totalPendudukPerempuan])->sum();    
         
-        $sheet->row(16,array(
-            'TOTAL','',$totalPendudukLakiWni
+$totalLahirLaki = collect([$laki_laki_lahir_I,$laki_laki_lahir])->sum();
+$totalLahirPerempuan = collect([$perempuan_lahir_I,$perempuan_lahir])->sum();
+$totaljumLahir = collect([$totalLahirLaki,$totalLahirPerempuan])->sum();    
 
+$totalMatiLaki = collect([$laki_laki_mati_I,$laki_laki_mati])->sum();
+$totalMatiPerempuan = collect([$perempuan_mati_I,$perempuan_mati])->sum();
+$totaljumMati = collect([$totalMatiLaki,$totalMatiPerempuan])->sum();    
+
+$totalPendatangLaki = collect([$laki_laki_pendatang_I,$laki_laki_pendatang])->sum();
+$totalPendatangPerempuan = collect([$perempuan_pendatang_I,$perempuan_pendatang])->sum();
+$totaljumPendatang = collect([$totalPendatangLaki,$totalPendatangPerempuan])->sum();    
+
+$totalPindahLaki = collect([$laki_laki_pindah_I,$laki_laki_pindah])->sum();
+$totalPindahPerempuan = collect([$perempuan_pindah_I,$perempuan_pindah])->sum();
+$totaljumPindah = collect([$totalPindahLaki,$totalPindahPerempuan])->sum();    
+
+$totalPendudukAkhirLaki = collect([$laki_laki_akhir_I,$laki_laki_akhir])->sum();
+$totalPendudukAkhirPerempuan = collect([$perempuan_akhir_I,$perempuan_akhir])->sum();
+$totaljumPendudukAkhir = collect([$totalPendudukAkhirLaki,$totalPendudukAkhirPerempuan])->sum();    
+
+
+        $sheet->row(16,array(
+            'TOTAL','',$totalPendudukLaki,$totalPendudukPerempuan,$totaljumPenduduk,
+            $totalLahirLaki,$totalLahirPerempuan,$totaljumLahir,
+            $totalMatiLaki,$totalMatiPerempuan,$totaljumMati,
+            $totalPendatangLaki,$totalPendatangPerempuan,$totaljumPendatang,
+            $totalPindahLaki,$totalPindahPerempuan,$totaljumPindah,
+            $totalPendudukAkhirLaki,$totalPendudukPerempuan,$totaljumPendudukAkhir
             ));
 
 }); //wni        
 
 
+      //start sheet penndidikan & mata pencharian
+    $excel->sheet('PEND & MATA PENCH', function($sheet) {
+
+        // Sheet manipulation
+         $sheet->mergeCells('A1:L1');
+        $sheet->mergeCells('A2:L2');
+        $sheet->mergeCells('A3:L3');
+        $sheet->mergeCells('A4:L4');
+        $sheet->cells('A1:L1', function($cells) {
+        // setting text center
+        $cells->setAlignment('CENTER');
+        });
+        $sheet->cells('A2:L2', function($cells) {
+        // setting text center
+        $cells->setAlignment('center');
+        });
+
+        $sheet->cells('A1:L4', function($cells) {
+        // setting text center
+        $cells->setAlignment('center');
+        });
+
+
+        //isian row 1
+        $sheet->row(1, array(
+             'DAFTAR REKAPITULASI JUMLAH PENDUDUK KOTA BANDUNG'
+        ));
+
+        $sheet->row(2, array(
+             'BERDASARKAN PENDIDIKAN DAN MATA PENCAHARIAN'
+        ));
+
+          $sheet->row(3, array(
+             'KELURAHAN CIHAPIT'
+        ));
+          $sheet->row(4, array(
+             'PADA BULAN DESEMBER 2015'
+             
+        ));
+
+        //merge cell
+
+        $sheet->cells('A6:B7', function($cells) {
+        // manipulate the range of cells
+        $cells->setAlignment('CENTER');
+        });
+
+    //merge
+        $sheet->mergeCells('A6:A7');
+        $sheet->mergeCells('B6:B7');
+        $sheet->mergeCells('C6:E6');
+        $sheet->mergeCells('F6:H6');
+        $sheet->mergeCells('I6:K6');
+        $sheet->mergeCells('L6:L7');
+        
+        
+
+        $sheet->setAutoSize(true);
+        $sheet->setSize('A6', 20, 15);
+        $sheet->setSize('C6', 7, 15);
+        $sheet->setSize('D6', 7, 15);
+        $sheet->setSize('E6', 7, 15);
+        $sheet->setSize('F6', 7, 15);
+        $sheet->setSize('G6', 7, 15);
+        $sheet->setSize('H6', 7, 15);
+        $sheet->setSize('I6', 7, 15);
+        $sheet->setSize('J6', 7, 15);
+        $sheet->setSize('K6', 7, 15);
+        $sheet->setSize('L6', 7, 15);
+        $sheet->setSize('A9', 5, 15);
+        $sheet->setSize('B9', 15, 15);
+       $sheet->cells('A6:L6', function($cells) {
+        // manipulate the range of cells
+        $cells->setAlignment('center');
+        });
+
+        $sheet->cells('A6:A6', function($cells) {
+                // manipulate the range of cells
+           $cells->setValignment('middle');
+
+
+                });
+
+        //setting borders cells
+        $sheet->setBorder('C6:L16', 'thin');
+        $sheet->setBorder('A6:B16', 'thin','thin','thin','thick');
+        
+        /*header*/
+        $sheet->row(6, array(
+        'NO' ,'PENDIDIKAN UMUM DAN MATA PENCAHARIAN','WNI','','','WNA','','','JUMLAH','','','KETERANGAN'
+        ));
+        $sheet->row(7, array(
+            '', '','L','P','JUMLAH','L','P','JUMLAH','L','P','JUMLAH','L'
+        ));
+        $sheet->row(8, array(
+            'A', 'PENDIDIKAN'
+        ));
+        
+
+    }); //end sheet pendidikan mata pencaharian
 
 
 
