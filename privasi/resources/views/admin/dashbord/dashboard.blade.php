@@ -10,12 +10,14 @@
 
 @section('content')
 
-@if(empty(Auth::user()))
+{{Auth::user()}}
+
+{{Auth::check()}}
 
 
 
 
-@endif
+
 
 
  

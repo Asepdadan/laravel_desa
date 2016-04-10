@@ -13,11 +13,23 @@ use Session;
 use View;
 class KependudukanPendidikan extends Controller
 {
-    //
-  public function __construct()
-    {
-        $this->middleware('admin');
+    
+    public function index(){
+         
+           $pendidikan = DB::table('tbl_pendidikan')->get();
+          return view('admin/kependudukan/pendidikan')->with(array('pendidikan' => $pendidikan));
+
     }
+
+        public function indexPendidikan(){
+         
+           $pendidikan = DB::table('tbl_pendidikan')->get();
+          return view('admin/rw/pendidikan')->with(array('pendidikan' => $pendidikan));
+
+    }
+
+
+
     public function pendidikan(validasiPendidikan $validasi){
 
         /*pendidikan wni 1*/
@@ -40,35 +52,10 @@ class KependudukanPendidikan extends Controller
 
 
       
-
-
-    }
-
- public function pencaharian(validasiPendidikan $validasi){
-
-        /*pencaharian wni 1*/
-         DB::table('tbl_jumlah_mata_pencaharian')->insert(
-        array('pencaharian_id' => input::get('pencaharian_id'),
-            'rw_id' => Input::get('rw_id'),
-             'L' => Input::get('wnil'),
-             'P' => Input::get('wnip'),
-             'penduduk' => "WNI")
-        );
-
-        /*pencaharian wna 1*/
-       DB::table('tbl_jumlah_mata_pencaharian')->insert(
-        array('pencaharian_id' => input::get('pencaharian_id'),
-            'rw_id' => Input::get('rw_id'),
-             'L' => Input::get('wnal'),
-             'P' => Input::get('wnap'),
-             'penduduk' => "WNA")
-        );
-
-       
-      
-
+return redirect('/umur');
 
     }
 
+ 
 
 }

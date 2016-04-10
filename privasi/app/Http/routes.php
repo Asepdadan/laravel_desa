@@ -1,15 +1,104 @@
 <?php
 
-/*
-|--------------------------------------------------------------------------
-| Routes File
-|--------------------------------------------------------------------------
-|
-| Here is where you will register all of the routes in an application.
-| It's a breeze. Simply tell Laravel the URIs it should respond to
-| and give it the controller to call when that URI is requested.
-|
-*/
+
+Route::group(['middleware' => ['web']], function () {
+
+            Route::group(['middleware' => 'SuperAdmin'], function(){
+                    Route::get('/posting-berita', 'AdminController@berita');
+                    Route::post('/ActionBerita','PostingBerita@posting');
+                    Route::get('/kelola-berita', function () {
+                        $data = DB::table('tbl_berita')->get();
+                        return view('admin/berita/kelola')->with(array('data' => $data));
+                    });
+
+                    Route::get('/penduduk','Penduduk@index');
+                    Route::post('/ActionJumlahPenduduk', 'Penduduk@action');
+                    Route::get('/agama','KependudukanAgama@index');
+                    Route::post('/ActionJumlahAgama', 'KependudukanAgama@actionAgama');
+                    Route::get('/pendidikan','KependudukanPendidikan@index');
+                    Route::post('/action_pendidikan','KependudukanPendidikan@pendidikan');
+                    Route::get('/mata-pencaharian','KependudukanMataPencaharian@index');
+                    Route::post('/action_pencaharian','KependudukanMataPencaharian@pencaharian');
+                    Route::get('/wna',  function() {
+                         return view('admin/kependudukan/wna');
+                    });
+                    Route::post('/action_wna','KependudukanWna@action');
+                    Route::get('/wni', function () {
+                        return view('admin/kependudukan/wni');
+                    });
+                    Route::post('/action_wni','KependudukanWni@action');
+                    Route::get('/umur', function () {
+                        $req = DB::table('tbl_umur')->get();
+                        return view('admin/kependudukan/umur')->with(array('data' => $req));
+                    });
+                    Route::post('/action_umur','KependudukanUmur@umur');
+                    Route::get('/dashbord',  'HomeController@index');
+
+                    });
+
+
+            Route::group(['middleware' => 'admin'], function(){
+                  //
+                    Route::get('dashbord-rw',function(){
+                        return view('admin/parent');
+                    });
+
+         
+                    Route::get('/kependudukan-penduduk','Penduduk@indexPenduduk');
+                    Route::post('/ActionJumlahPenduduk', 'Penduduk@action');
+                    Route::get('/kependudukan-agama','KependudukanAgama@indexAgama');
+                    Route::post('/ActionJumlahAgama', 'KependudukanAgama@actionAgama');
+                    Route::get('/kependudukan-pendidikan','KependudukanPendidikan@indexPendidikan');
+                    Route::post('/action_pendidikan','KependudukanPendidikan@pendidikan');
+                    Route::get('/kependudukan-mata-pencaharian','KependudukanMataPencaharian@indexMataPencaharian');
+                    Route::post('/action_pencaharian','KependudukanMataPencaharian@pencaharian');
+                    Route::get('/kependudukan-wna',  'KependudukanWna@indexWna');                         
+                    Route::post('/action_wna','KependudukanWna@action');
+                    Route::get('/kependudukan-wni', 'KependudukanWni@indexWni');
+                    Route::post('/action_wni','KependudukanWni@action');
+                    Route::get('/kependudukan-umur', 'KependudukanUmur@indexUmur');
+                    Route::post('/action_umur','KependudukanUmur@umur');
+
+
+
+                     Route::get('data-penduduk','DataKependudukan@index');
+                    Route::post('action-kependudukan','DataKependudukan@action');
+
+              });
+
+//website guest
+
+
+            Route::get('carbon',function(){
+                $mytime = Carbon\Carbon::now('Asia/Jakarta');
+                echo $mytime;
+                echo "<br>";
+                $month= $mytime->month;
+                $day= $mytime->day;
+                $tanggal = $mytime->toDateString();
+                echo "<br>";
+                // echo $mytime->create(2016,$month,10);
+                echo "<br>";
+                $hasil = $tanggal;
+                echo $hasil;
+                
+                $now = $mytime->isYesterday();
+                echo "<br>";
+                echo $now;
+                echo "<br>";
+                echo "benar";
+                echo new $mytime('this month'); 
+                
+                /*echo "<br>";
+                echo $jum;*/
+                echo "<br>";
+                $knownDate = $mytime->create(2016,$month,$day,0);          // create testing date
+                $mytime->setTestNow($knownDate);                        // set the mock
+                echo new $mytime('last month');                           //
+
+            });
+
+
 
 
 Route::get('/', function () {
@@ -21,11 +110,11 @@ Route::get('/lokasi', function () {
     return view('peta_wilayah/lokasi');
 });
 
-
-Route::get('/profile', function () {
+Route::get('/profile-kelurahan', function () {
       $data = DB::table('tbl_data_saran')->get();
     return view('profile/profile')->with(array('data' => $data));
 });
+
 
 Route::get('/sejarah', function () {
   
@@ -49,227 +138,8 @@ Route::get('/data-dinamis', function () {
 });
 
 
-
-
-
-
-Route::get('/kelola-berita', function () {
-    $data = DB::table('tbl_berita')->get();
-    return view('admin/berita/kelola')->with(array('data' => $data));
-});
-
-
-//admin
-
-
-Route::post('/ActionBerita','PostingBerita@posting');
-
-
-
-Route::get('export',function(){
-$now = date('Y-m-d');
-
-Excel::create('Laporan Kependudukan Cihapit - '.$now, function($excel) {
-
-    // Call writer methods here
-    $excel->sheet('Agama', function($sheet) {
-
-        // Sheet manipulation
-        $sheet->mergeCells('A1:P1');
-        $sheet->mergeCells('A2:P2');
-        $sheet->cells('A1:P1', function($cells) {
-        // manipulate the range of cells
-        $cells->setAlignment('center');
-        });
-        $sheet->cells('A2:P2', function($cells) {
-        // manipulate the range of cells
-        $cells->setAlignment('center');
-        });
-        $sheet->row(1, array(
-             'DAFTAR REKAPITULASI JUMAH PENDUDUK KOTA BANDUNG'
-        ));
-        $sheet->row(2, array(
-             'BERDASARKAN JUMLAH RT, RW DAN MENURUT GOLONGAN AGAMA'
-        ));
-
-        $sheet->mergeCells('A4:B4');
-        $sheet->mergeCells('A5:B5');
-        $sheet->mergeCells('A6:B6');
-        $sheet->cells('A4:B6', function($cells) {
-        // manipulate the range of cells
-        $cells->setAlignment('left');
-        });
-
-         $sheet->row(4, array(
-             'KELURAHAN','',' : Cihapit'
-        ));
-         $sheet->row(5, array(
-             'KECAMATAN','', ': Bandung Wetan'
-        ));
-
-         $sheet->row(6, array(
-             'PADA BULAN'
-        ));
-
-$sheet->mergeCells('A8:A9');
-$sheet->mergeCells('B8:B9');
-$sheet->mergeCells('C8:D8');
-$sheet->mergeCells('E8:G8');
-$sheet->mergeCells('H8:J8');
-$sheet->mergeCells('K8:P8');
-
-$sheet->setAutoSize(true);
-$sheet->setSize('C8', 5, 15);
-$sheet->setSize('D8', 5, 15);
-
-$sheet->setSize('E8', 5, 15);
-$sheet->setSize('F8', 5, 15);
-$sheet->setSize('G8', 5, 15);
-$sheet->setSize('H8', 5, 15);
-$sheet->setSize('I8', 5, 15);
-$sheet->setSize('J80', 5, 15);
-   $sheet->cells('A8:P9', function($cells) {
-        // manipulate the range of cells
-        $cells->setAlignment('center');
-        });
-
-
-
-$sheet->cells('A8:A9', function($cells) {
-        // manipulate the range of cells
-   $cells->setValignment('middle');
-
-
-        });
-
-$sheet->setBorder('C8:P14', 'thin');
-$sheet->setBorder('A8:B14', 'thin','thin','thin','thick');
-//$sheet->setBorder('A12:A17', 'thin');
-//$sheet->setBorder('A12:B17', 'thin');
-   
-$sheet->row(8, array(
-     'no', 'kelurahan','jumlah ','','Jumlah umpi','','', 'jumlah penduduk','','','Jumlah menurut golongan agama','','','','',''
-));
-$sheet->row(9, array(
-    '', '','RT','RW','WNI','WNA','JML','L','P','JML','islam','kristen','khatolik','hindu','budha','Lain - lain'
-));
-
-     $sheet->cells('A12:P12', function($cells) {
-        // manipulate the range of cells
-        $cells->setAlignment('center');
-         $cells->setValignment('middle');
-        });   
-
- $wni = DB::table('tbl_jumlah_umpi')
-                    ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
-                    ->sum('WNI');
- $wna= DB::table('tbl_jumlah_umpi')
-                    ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
-                    ->sum('WNA');
-$jum = collect([$wni,$wna])->sum();
-
- $L = DB::table('tbl_jumlah_penduduk')
-                    ->whereBetween('waktu', ['2016-03-01', '2016-04-06'])
-                    ->sum('L');
-
-
-$sheet->row(12, array(
-    '1', 'Cihapit','46','8',$wni,$wna,$jum,$L,'10','22','30','12','12','1','11','0'
-));
-       
-
-
-    });
-
-
-    $excel->sheet('WNA', function($sheet) {
-
-        // Sheet manipulation
-
-        
-
-    });
-
-
-
-})->export('xlsx');;
-
-
-});
-
-Route::get('exports','Export@export');
-// query
-
-//SELECT * FROM `tbl_jumlah_agama` WHERE month(waktu) = month(now())
-/*
-|--------------------------------------------------------------------------
-| Application Routes
-|--------------------------------------------------------------------------
-|
-| This route group applies the "web" middleware group to every route
-| it contains. The "web" middleware group is defined in your HTTP
-| kernel and includes session state, CSRF protection, and more.
-|
-
-*/
-Route::group(['middleware' => 'admin'], function () {
-    Route::get('/', function ()    {
-        // Uses Auth Middleware
-    });
-
-    Route::get('user/profile', function () {
-        // Uses Auth Middleware
-    });
-});
-
-
-
-
-Route::group(['middleware' => ['web']], function () {
-    //
-    Route::get('/agama', ['middleware' => 'admin',function () {
-    $req = DB::table('tbl_agama')->get();
-    return view('admin/kependudukan/agama')->with(array('data' => $req));
-}]);
-Route::post('/ActionJumlahPenduduk', 'KependudukanAgama@action');
-Route::post('/ActionJumlahAgama', 'KependudukanAgama@actionAgama');
-
-
-Route::get('/pendidikan_mata_pencaharian', function () {
-
-    $pendidikan = DB::table('tbl_pendidikan')->get();
-    $pencaharian = DB::table('tbl_pencaharian')->get();
-    return view('admin/kependudukan/pendidikan_pencaharian')->with(array('pendidikan' => $pendidikan, 'pencaharian' => $pencaharian));
-});
-
-Route::post('/action_pendidikan','KependudukanPendidikan@pendidikan');
-Route::post('/action_pencaharian','KependudukanPendidikan@pencaharian');
-
-Route::get('/wna', ['middleware' => 'admin', function() {
-    // Only authenticated users may enter...
-     return view('admin/kependudukan/wna');
-}]);
-
-Route::post('/action_wna','KependudukanWna@action');
-
-
-Route::get('/wni',['middleware' => 'admin', function () {
-    return view('admin/kependudukan/wni');
-}]);
-Route::post('/action_wni','KependudukanWni@action');
-
-
-Route::get('/umur', function () {
-    $req = DB::table('tbl_umur')->get();
-    return view('admin/kependudukan/umur')->with(array('data' => $req));
-});
-Route::post('/action_umur','KependudukanUmur@umur');
-
-
-
-Route::get('/dashbord',  'HomeController@index');
-
 Route::get('login',function(){
+Auth::logout();
 return view('admin/login');
 });
 Route::post('login','Login@login');
@@ -278,25 +148,38 @@ Auth::logout();
 return redirect('login')->with('message','Terima Kasih');
 });
 
-Route::get('/posting-berita', function () {
-    return view('admin/berita/berita');
+
+
+
 });
 
 
-});
+/*
+|--------------------------------------------------------------------------
+| Routes File
+|--------------------------------------------------------------------------
+|
+| Here is where you will register all of the routes in an application.
+| It's a breeze. Simply tell Laravel the URIs it should respond to
+| and give it the controller to call when that URI is requested.
+|
+*/
 
 
 
 
-Route::get('daftar',function(){
 
-DB::table('users')->insert(array(
-    'username' => 'AdminRw8',
-    'password' => Hash::make('adminkelurahan123#@!'),
-    'hak_akses' => 'rw'
-    ));
+//admin
 
-});
+
+
+
+Route::get('exports','Export@export');
+
+
+
+
+
 
 
 Route::get('testing',function(){
@@ -343,7 +226,3 @@ echo "<br>";
 echo date('Y-m-d', strtotime(date('Y-m-d') . '- 1 month'));
 });
 
-
-Route::get('profile', ['middleware' => 'admin', function() {
-    // Only authenticated users may enter...
-}]);

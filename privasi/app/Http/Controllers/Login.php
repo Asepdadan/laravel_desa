@@ -15,12 +15,13 @@ class Login extends Controller
 {
     //
     public function login(validasiLogin $validasi){
+        Auth::logout();
         if(Auth::attempt(['username' => Input::get('username'), 'password' => Input::get('password')])){
 
                 if(Auth::User()->hak_akses=="admin"){
                    return redirect('/dashbord');
                 }else{
-                    return redirect('/posting-berita');
+                    return redirect('/dashbord-rw');
                     //return Auth::user();
                 }
 

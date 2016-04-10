@@ -19,19 +19,25 @@
             <!-- <h2 class="panel-title">Form Posting Berita</h2> -->
                <div class="tabs">
                               <ul class="nav nav-tabs">
-                                    <li>
-                                        <a href="{{ URL::to('/agama') }}" >Jumlah dan Agama</a>
+                                      <li >
+                                        <a href="{{ URL::to('/agama') }}" >Jumlah Agama</a>
                                     </li>
-                                    <li >
+                                    <li>
+                                        <a href="{{ URL::to('/penduduk') }}" >Jumlah Penduduk</a>
+                                    </li>
+                                    <li>
                                         <a href="{{ URL::to('/wna') }}" >WNA</a>
                                     </li>
                                     <li class="active">
                                         <a href="{{ URL::to('/wni') }}" >WNI</a>
                                     </li>
-                                    <li>
-                                        <a href="{{ URL::to('/pendidikan_mata_pencaharian') }}">Pendidikan dan Mata Pencaharian</a>
+                                       <li>
+                                        <a href="{{ URL::to('/pendidikan') }}">Pendidikan</a>
                                     </li>
                                     <li>
+                                        <a href="{{ URL::to('/mata-pencaharian') }}">Mata Pencaharian</a>
+                                    </li>
+                                    <li  >
                                         <a href="{{ URL::to('/umur') }}" >Umur</a>
                                     </li>
                                 </ul>
@@ -109,15 +115,15 @@
                                             <tbody>
                                             {!! Form::open(['url' => 'action_wni']) !!}
                                             <tr>
-                                                    <input type="hidden" name="rw_id" size="3" value="3">
-                                                    <td><input type="text" name="pll" size="3" class="form-control"></td>
-                                                    <td><input type="text" name="plp" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="ml" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="mp" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="pl" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="pp" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="pil" size="3"  class="form-control"></td>
-                                                    <td><input type="text" name="pip" size="3"  class="form-control"></td>
+                                                    <input type="hidden" name="rw_id" size="3" value="{{ Auth::user()->id }}">
+                                                    <td><input type="number" name="pll" size="3" class="form-control"></td>
+                                                    <td><input type="number" name="plp" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="ml" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="mp" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="pl" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="pp" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="pil" size="3"  class="form-control"></td>
+                                                    <td><input type="number" name="pip" size="3"  class="form-control"></td>
                                             </tr>
 
                                             <tr>

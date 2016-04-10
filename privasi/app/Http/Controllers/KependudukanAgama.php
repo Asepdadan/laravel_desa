@@ -9,37 +9,23 @@ use App\Http\Requests;
 use Illuminate\Support\Facades\Input;
 use DB;
 use Redirect;
-use Session;
 use View;
 
 
 class KependudukanAgama extends Controller
 {
-    //
-   public function __construct()
-    {
-        $this->middleware('admin');
-    }
 
-    public function action(validasiAgama $validasi){
-        
-         //jumlah umpi
-        DB::table('tbl_jumlah_umpi')->insert(
-        array('rw_id' => Input::get('rw_id'), 'wna' => Input::get('wna'),'wni' => Input::get('wni'))
-        );
-       //jumlah umpi
+  public function index(){
+    $data = DB::table('tbl_agama')->get();
+    return view('admin/kependudukan/agama')->with(array('data' => $data));
+  }
 
+  public function indexAgama(){
+    $data = DB::table('tbl_agama')->get();
+    return view('admin/rw/agama')->with(array('data' => $data));
+  }
 
-       //jumlah penduduk
-        DB::table('tbl_jumlah_penduduk')->insert(
-        array('rw_id' => Input::get('rw_id'), 'L' => Input::get('l'),'P' => Input::get('p'))
-        );  
-       //jumlah penduduk
-    
-        
-    }
-
-    public function actionAgama(validasiAgama $validasi){
+    public function actionAgama(){
          //jumlah agama1
         DB::table('tbl_jumlah_agama')->insert(
         array('agama_id' => 1 ,'rw_id' => Input::get('rw_id'),'jumlah' => Input::get('1'))
@@ -76,6 +62,7 @@ class KependudukanAgama extends Controller
         );
        //jumlah agama
 
+        return redirect('/dashbord');
     }
 
 }

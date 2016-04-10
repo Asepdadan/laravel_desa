@@ -13,10 +13,10 @@ use Session;
 use View;
 class KependudukanUmur extends Controller
 {
-    //
-       public function __construct()
-    {
-        $this->middleware('admin');
+
+    public function indexUmur(){
+         $req = DB::table('tbl_umur')->get();
+        return view('admin/rw/umur')->with(array('data' => $req));
     }
 
         public function umur(validasiUmur $validasi){
@@ -40,8 +40,6 @@ class KependudukanUmur extends Controller
         );
 
 
-      
-
-
+      return redirect('/dashbord');
     }
 }

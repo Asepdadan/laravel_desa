@@ -13,11 +13,11 @@ use View;
 
 class KependudukanWna extends Controller
 {
-    //
-  public function __construct()
-    {
-        $this->middleware('admin');
-    }
+
+    public function indexWna(){
+    return view('admin/rw/wna');    
+    }   
+
     public function action(validasiWna $validasi){
         
         DB::table('tbl_lahir')->insert(
@@ -48,7 +48,7 @@ class KependudukanWna extends Controller
              'penduduk' => "WNA")
         );
 
-
+           return redirect('/dashbord');
     }
 
 

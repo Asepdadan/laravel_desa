@@ -19,17 +19,23 @@
             <!-- <h2 class="panel-title">Form Posting Berita</h2> -->
                <div class="tabs">
                              <ul class="nav nav-tabs">
-                                    <li >
-                                        <a href="{{ URL::to('/agama') }}" >Jumlah dan Agama</a>
+                                     <li >
+                                        <a href="{{ URL::to('/agama') }}" >Jumlah Agama</a>
+                                    </li>
+                                    <li>
+                                        <a href="{{ URL::to('/penduduk') }}" >Jumlah Penduduk</a>
                                     </li>
                                     <li>
                                         <a href="{{ URL::to('/wna') }}" >WNA</a>
                                     </li>
-                                     <li>
+                                       <li>
                                         <a href="{{ URL::to('/wni') }}" >WNI</a>
                                     </li>
+                                     <li>
+                                        <a href="{{ URL::to('/pendidikan') }}">Pendidikan</a>
+                                    </li>
                                     <li>
-                                        <a href="{{ URL::to('/pendidikan_mata_pencaharian') }}">Pendidikan dan Mata Pencaharian</a>
+                                        <a href="{{ URL::to('/mata-pencaharian') }}">Mata Pencaharian</a>
                                     </li>
                                     <li  class="active">
                                         <a href="{{ URL::to('/umur') }}" >Umur</a>
@@ -93,17 +99,17 @@
                                             <tr>
                                             {!!  Form::open(['url' => '/action_umur', 'class' => 'form-horizontal']) !!}
                                                     <td>1</td>
-                                                    <td><input type="hidden" name="rw_id" size="3" value="3">
+                                                    <td><input type="hidden" name="rw_id" size="3" value="{{ Auth::user()->id }}">
                                                     <select name="umur_id" class="form-control">
                                                     @foreach($data as $row)
                                                             <option value="{{$row->id }}"> {{ $row->umur }}</option>
                                                         @endforeach
                                                         </select>
                                                     </td>
-                                                    <td><input type="text" name="wnil" size="3" class="form-control"></td>
-                                                    <td><input type="text" name="wnip" size="3" class="form-control"></td>
-                                                    <td><input type="text" name="wnal" size="3" class="form-control"></td>
-                                                    <td><input type="text" name="wnap" size="3" class="form-control"></td>
+                                                    <td><input type="number" name="wnil" size="3" class="form-control"></td>
+                                                    <td><input type="number" name="wnip" size="3" class="form-control"></td>
+                                                    <td><input type="number" name="wnal" size="3" class="form-control"></td>
+                                                    <td><input type="number" name="wnap" size="3" class="form-control"></td>
                                             </tr>
                                             <tr>
                                                 <td></td>

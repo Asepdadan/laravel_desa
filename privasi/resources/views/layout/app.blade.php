@@ -127,7 +127,7 @@
                                 
                             </ul>
                             </li>
-                            <li><a href="{{ URL::to('/profile')}}">Profile</a></li>
+                            <li><a href="{{ URL::to('/profile-kelurahan')}}">Profile</a></li>
                             <li class="dropdown" style="bakcground:blue;">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">Latar Belakang <b class="caret"></b></a>
                             <ul class="dropdown-menu">

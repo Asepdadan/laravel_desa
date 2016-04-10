@@ -13,10 +13,9 @@ use Session;
 use View;
 class KependudukanWni extends Controller
 {
-    //
-       public function __construct()
-    {
-        $this->middleware('admin');
+
+    public function indexWni(){
+         return view('admin/rw/wni');
     }
 
    public function action(validasiWni $validasi){
@@ -49,7 +48,7 @@ class KependudukanWni extends Controller
              'penduduk' => "WNI")
         );
 
-
+        return   redirect('/dashbord');
     }
 
 
