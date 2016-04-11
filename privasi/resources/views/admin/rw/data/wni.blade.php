@@ -1,6 +1,6 @@
 @extends('admin.parent')
 
-@section('title', 'Page Kependudukan')
+@section('title', 'Data Wni')
 
 @section('css')
     @parent
@@ -22,13 +22,13 @@
                                   <li >
                                         <a href="{{ URL::to('/kependudukan-agama') }}" >Jumlah Agama</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="{{ URL::to('/kependudukan-penduduk') }}" >Jumlah Penduduk</a>
                                     </li>
-                                    <li>
+                                    <li >
                                         <a href="{{ URL::to('/kependudukan-wna') }}" >WNA</a>
                                     </li>
-                                       <li>
+                                       <li class="active">
                                         <a href="{{ URL::to('/kependudukan-wni') }}" >WNI</a>
                                     </li>
                                      <li>
@@ -68,68 +68,71 @@
                                              <tr>
                                                 <td><H5>RW</H5></td>
                                                 <td> : </td>
-                                                <td><H5> <b>{{ Auth::user()->name}}</b></H5></td>
+                                                <td><H5> <b>{{ Auth::user()->username}}</b></H5></td>
                                             </tr>
                                     </table>
                                     <br>
-                                    
-
-                                    @if($errors->has())
-                                    <span class="label label-danger">
-                                    {!! $errors->first('wni') !!}<br>
-                                    {!! $errors->first('wna') !!}<br>
-                                    {!! $errors->first('l') !!}<br>
-                                    {!! $errors->first('p') !!}
-                                     {!! $errors->first('1') !!}
-                                     {!! $errors->first('2') !!}
-                                    </span>
-                                    @endif
-                                       
                                     </div>
-                                   
-                                     <div class="table-responsive text-center">
-                                        <table class="table table-bordered" >
-                                            <thead >
-                                                <tr >
-                                                    
-                                                    <th colspan="2" class="text-center">Jumlah UMPI</th>
-                                                    <th colspan="3" class="text-center">Jumlah Penduduk</th>
-                                                    
-                                                </tr>
-                                                <tr>
-                                                    
-                                                    <th>WNI</th>
-                                                    <th>WNA</th>
-                                                    <th>L</th>
-                                                    <th>P</th>
-                                                    <th>Penduduk</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            {!!  Form::open(['url' => '/ActionJumlahPenduduk']) !!}
 
-                                            <tr>
-                                               <input type="hidden" name="rw_id" size="3" value="{{ Auth::user()->id }}">
-                                                    <td><input type="number" name="wni" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="wna" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="l" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="p" size="3" class="form-control"></td>
-                                                    <td>
-                                                            <select name="penduduk"  class="form-control">
-                                                                <option value="WNI">WNI</option>
-                                                                <option value="WNA">WNA</option>
-                                                            </select>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td colspan="6"><button type="submit" class="btn btn-success btn btn-block" name="penduduk">Simpan data</button></td>
-                                            </tr>
-                                            {!!  Form::close() !!}
+
+                                    {{Form::open(['url' => '/action-wni'])}}
+                                                                 
+                                     <div class="form-group">
+                                                <label class="col-md-3 control-label">Date range</label>
+                                                <div class="col-md-6">
+                                                    <div class="input-daterange input-group" data-plugin-datepicker>
+                                                        <span class="input-group-addon">
+                                                            <i class="fa fa-calendar"></i>
+                                                        </span>
+                                                        <input type="date" class="form-control" name="start" required>
+                                                        <span class="input-group-addon">Sampai</span>
+                                                        <input type="date" class="form-control" name="end" required>
+                                                        <span class="input-group-addon">
+                                                            <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                                 
+                                            </div>
+
+                                    </form>
+
+                             @if(Session::has('message'))
+                                <h4><span class="label label-success">{{ Session::get('message') }}</span></h4>
+                            @endif
+                                   
+                                   
+                                    <div class="table-responsive">
+                                        <table class="table table-bordered">
+                                            <thead>
+                                                <tr>
+                                                    <th   class="text-center">No</th>
+                                                    <th   class="text-center">Agama</th>
+                                                    <th   class="text-center">Jumlah</th>
+                                                    <th   class="text-center">Waktu</th>
+                                                    <th   class="text-center">Action</th>
+                                                </tr>
+                                               
+                                            </thead>
+                                            <tbody class="text-center">
+                                            
+                                                <?php $no = 1; ?>
+                                                @foreach($data as $row)
+                                                <tr>
+                                                    <td>{{ $no++}} </td>   
+                                            
+                                                    <td>{{ $row->L}}</td>   
+                                             
+                                                    <td>{{ $row->P}}</td>   
+                                                    <td>{{ $row->waktu}}</td>   
+                                                    <td><a href="">Edit</a></td>
+                                                    
+                                                </tr>
+                                            @endforeach
+                                            
                                             </tbody>
-                                           
                                         </table>
-                                    </div> 
+                                    </div>
 
 
                                 </div>
@@ -140,7 +143,7 @@
                         </div>
                 </div>
 
-        </div>
+               
 </section>
 
                          

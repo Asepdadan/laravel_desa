@@ -19,10 +19,10 @@
             <!-- <h2 class="panel-title">Form Posting Berita</h2> -->
                <div class="tabs">
                              <ul class="nav nav-tabs">
-                                  <li >
+                                     <li >
                                         <a href="{{ URL::to('/kependudukan-agama') }}" >Jumlah Agama</a>
                                     </li>
-                                    <li class="active">
+                                    <li>
                                         <a href="{{ URL::to('/kependudukan-penduduk') }}" >Jumlah Penduduk</a>
                                     </li>
                                     <li>
@@ -31,7 +31,7 @@
                                        <li>
                                         <a href="{{ URL::to('/kependudukan-wni') }}" >WNI</a>
                                     </li>
-                                     <li>
+                                     <li class="active">
                                         <a href="{{ URL::to('/kependudukan-pendidikan') }}">Pendidikan</a>
                                     </li>
                                     <li>
@@ -45,9 +45,11 @@
         <div class="panel-body">
               <div class="col-md-12">                        
                                 <div class="tab-content">
-                                    <div id="agama" class="tab-pane active">
-                                    <h4 class="text-center">DAFTAR REKAPITULASI JUMAH PENDUDUK KOTA BANDUNG</h4>
-                                    <h4 class="text-center">BERDASARKAN JUMLAH RT, RW DAN MENURUT GOLONGAN AGAMA   </h4>
+                                    <div  class="tab-pane active">
+                                    <h4 class="text-center">DAFTAR REKAPITULASI JUMLAH PENDUDUK KOTA BANDUNG</h4>
+                                    <h4 class="text-center">BERDASARKAN PENDIDIKAN DAN MATA PENCAHARIAN</h4>
+                                    <h4 class="text-center">KELURAHAN CIHAPIT</h4>
+                                    <h4 class="text-center">PADA BULAN DESEMBER 2015</h4>
                                     
                                     <table>
                                             <tr>
@@ -65,72 +67,57 @@
                                                 <td> : </td>
                                                 <td><H5> APRIL 2016 </H5></td>
                                             </tr>
-                                             <tr>
-                                                <td><H5>RW</H5></td>
-                                                <td> : </td>
-                                                <td><H5> <b>{{ Auth::user()->name}}</b></H5></td>
-                                            </tr>
                                     </table>
-                                    <br>
-                                    
 
-                                    @if($errors->has())
+                                     @if($errors->has())
                                     <span class="label label-danger">
-                                    {!! $errors->first('wni') !!}<br>
-                                    {!! $errors->first('wna') !!}<br>
-                                    {!! $errors->first('l') !!}<br>
-                                    {!! $errors->first('p') !!}
-                                     {!! $errors->first('1') !!}
-                                     {!! $errors->first('2') !!}
+                                    {!! $errors->first('wnil') !!}<br>
+                                    {!! $errors->first('wnal') !!}<br>
+                                    {!! $errors->first('wnip') !!}<br>
+                                    {!! $errors->first('wnap') !!}
+
                                     </span>
                                     @endif
-                                       
-                                    </div>
-                                   
-                                     <div class="table-responsive text-center">
+
+                                    <div class="table-responsive text-center">
                                         <table class="table table-bordered" >
-                                            <thead >
-                                                <tr >
-                                                    
-                                                    <th colspan="2" class="text-center">Jumlah UMPI</th>
-                                                    <th colspan="3" class="text-center">Jumlah Penduduk</th>
-                                                    
+                                            <thead>
+                                                <tr>
+                                                    <th rowspan="2" >No </th>
+                                                    <th rowspan="2" >Pendidikan umum </th>
+                                                    <th colspan="2">WNA</th>
+                                                    <th colspan="2">WNI</th>
                                                 </tr>
                                                 <tr>
-                                                    
-                                                    <th>WNI</th>
-                                                    <th>WNA</th>
                                                     <th>L</th>
                                                     <th>P</th>
-                                                    <th>Penduduk</th>
+                                                    <th>L</th>
+                                                    <th>P</th>                                                  
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                            {!!  Form::open(['url' => '/ActionJumlahPenduduk']) !!}
-
+                                            <?php $no = 1; ?>
+                                            @foreach($pendidikanWna as $row) 
+                                            @foreach($pendidikanWni as $row1) 
                                             <tr>
-                                               <input type="hidden" name="rw_id" size="3" value="{{ Auth::user()->id }}">
-                                                    <td><input type="number" name="wni" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="wna" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="l" size="3" class="form-control"></td>
-                                                    <td><input type="number" name="p" size="3" class="form-control"></td>
-                                                    <td>
-                                                            <select name="penduduk"  class="form-control">
-                                                                <option value="WNI">WNI</option>
-                                                                <option value="WNA">WNA</option>
-                                                            </select>
-                                                    </td>
-                                            </tr>
-                                            <tr>
-                                                
-                                                <td colspan="6"><button type="submit" class="btn btn-success btn btn-block" name="penduduk">Simpan data</button></td>
-                                            </tr>
-                                            {!!  Form::close() !!}
+                                            <td>{{ $no++ }}</td>
+                                            <td>{{ $row->pendidikan }}</td>
+                                            <td>{{ $row->L }}</td>
+                                            <td>{{ $row->P }}</td>
+                                            <td>{{ $row1->L }}</td>
+                                            <td>{{ $row1->P }}</td>
+                                           </tr>
+                                           @endforeach
+                                           @endforeach
                                             </tbody>
                                            
                                         </table>
                                     </div> 
 
+                                                                        
+                                       
+                                       
+                                    </div>
 
                                 </div>
                             </div>

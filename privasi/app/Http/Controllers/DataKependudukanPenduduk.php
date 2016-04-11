@@ -11,23 +11,24 @@ use Redirect;
 use View;
 use Carbon;
 use Auth;
-class DataKependudukan extends Controller
+
+class DataKependudukanPenduduk extends Controller
 {
     //
-    public function index()
+     public function index()
     {
-          $data= DB::table('tbl_jumlah_agama')
-                    ->join('tbl_agama', function ($join) {
-                        $join->on('tbl_jumlah_agama.agama_id', '=', 'tbl_agama.id')
+          $data= DB::table('tbl_jumlah_penduduk')
+                    ->join('tbl_rw', function ($join) {
+                        $join->on('tbl_jumlah_penduduk.rw_id', '=', 'tbl_rw.id')
                              ->where('rw_id', '=', Auth::user()->id);
                     })
 
                     ->get();
-        return view('admin/rw/data/data')->with(array('data' => $data));
+        return view('admin/rw/data/penduduk')->with(array('data' => $data));
 
     }
 
-    public function action(){
+     public function action(){
 
 
                 $start = Input::get('start');
@@ -43,17 +44,18 @@ class DataKependudukan extends Controller
                     return redirect('/data-kependudukan')->with('message','Silahkan isi dulu waktu range nya');
                 }else{
 
-                  $data= DB::table('tbl_jumlah_agama')
-                    ->join('tbl_agama', function ($join) {
-                        $join->on('tbl_jumlah_agama.agama_id', '=', 'tbl_agama.id')
+                  $data= DB::table('tbl_jumlah_penduduk')
+                    ->join('tbl_rw', function ($join) {
+                        $join->on('tbl_jumlah_penduduk.rw_id', '=', 'tbl_rw.id')
                              ->where('rw_id', '=', Auth::user()->id );
                     })
                 ->whereBetween('waktu', [$start,$end])
                 ->get();
-                return view('admin/rw/data/data')->with(array('data' => $data));
+                return view('admin/rw/data/penduduk')->with(array('data' => $data));
     
                 }
                 
     }
+
 
 }

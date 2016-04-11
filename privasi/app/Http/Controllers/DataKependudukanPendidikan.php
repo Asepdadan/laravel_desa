@@ -11,23 +11,31 @@ use Redirect;
 use View;
 use Carbon;
 use Auth;
-class DataKependudukan extends Controller
+
+class DataKependudukanPendidikan extends Controller
 {
     //
-    public function index()
+     public function index()
     {
-          $data= DB::table('tbl_jumlah_agama')
-                    ->join('tbl_agama', function ($join) {
-                        $join->on('tbl_jumlah_agama.agama_id', '=', 'tbl_agama.id')
+          $pendidikanWna= DB::table('tbl_jumlah_pendidikan')
+                    ->join('tbl_pendidikan', function ($join) {
+                        $join->on('tbl_jumlah_pendidikan.pendidikan_id', '=', 'tbl_pendidikan.id')
                              ->where('rw_id', '=', Auth::user()->id);
                     })
-
+                    ->where('penduduk','WNA')
                     ->get();
-        return view('admin/rw/data/data')->with(array('data' => $data));
+            $pendidikanWni= DB::table('tbl_jumlah_pendidikan')
+                    ->join('tbl_pendidikan', function ($join) {
+                        $join->on('tbl_jumlah_pendidikan.pendidikan_id', '=', 'tbl_pendidikan.id')
+                             ->where('rw_id', '=', Auth::user()->id);
+                    })
+                    ->where('penduduk','WNI')
+                    ->get();
+        return view('admin/rw/data/pendidikan')->with(array('pendidikanWna' => $pendidikanWna,'pendidikanWni' => $pendidikanWni));
 
     }
 
-    public function action(){
+     public function action(){
 
 
                 $start = Input::get('start');
@@ -40,7 +48,7 @@ class DataKependudukan extends Controller
                 $mytime->setTestNow($knownDate);                        // set the mock
 
                 if(empty($_POST)){
-                    return redirect('/data-kependudukan')->with('message','Silahkan isi dulu waktu range nya');
+                    return redirect('/data-agama')->with('message','Silahkan isi dulu waktu range nya');
                 }else{
 
                   $data= DB::table('tbl_jumlah_agama')
@@ -50,7 +58,7 @@ class DataKependudukan extends Controller
                     })
                 ->whereBetween('waktu', [$start,$end])
                 ->get();
-                return view('admin/rw/data/data')->with(array('data' => $data));
+                return view('admin/rw/data/agama')->with(array('data' => $data));
     
                 }
                 

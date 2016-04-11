@@ -24,23 +24,24 @@ class validasiPenduduk extends Request
     public function rules()
     {
         return [
-            //
-        'rw_id' => 'required',
         'wna' => 'required|numeric',
         'wni' => 'required|numeric',
         'l' => 'required|numeric',
         'p' => 'required|numeric',
+        
         ];
     }
 
     public function messages(){
-        'wna.required' => "Isian pada wna tidak boleh kosong",
-        'wna.required' => "Isian pada wna tidak boleh kosong",
+        return[
+        "wna.required"=> "Isian pada wna tidak boleh kosong",
+        'wni.required' => "Isian pada wni tidak boleh kosong",
         'l.required' => "Isian pada laki laki tidak boleh kosong",
         'p.required' => "Isian pada perempuan tidak boleh kosong",
         'wna.numeric' => "isian wna harus angka",
         'wni.numeric' => "isian wni harus angka",
         'l.numeric' => "isian laki laki harus angka",
-        'p.numeric' => "isian perempuan harus angka",
+        'p.numeric' => "isian perempuan harus angka"
+        ];
     }
 }

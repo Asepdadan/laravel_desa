@@ -121,7 +121,7 @@
                                        
                                     </li>
                                       <li >
-                                        <a href="{{ URL::to('/data-penduduk')}}">
+                                        <a href="{{ URL::to('/data-agama')}}">
                                             <i class="fa fa-align-left" aria-hidden="true"></i>
                                             <span>Data Kependudukan</span>
                                         </a>
@@ -164,7 +164,7 @@
                     <!-- start: page -->
                     <div class="row">
                         @yield('content')
-                        {{Auth::user()}}
+                        
                     </div>                                
 
 

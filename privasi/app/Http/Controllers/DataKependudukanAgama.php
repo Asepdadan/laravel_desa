@@ -11,10 +11,11 @@ use Redirect;
 use View;
 use Carbon;
 use Auth;
-class DataKependudukan extends Controller
+class DataKependudukanAgama extends Controller
 {
     //
-    public function index()
+
+     public function index()
     {
           $data= DB::table('tbl_jumlah_agama')
                     ->join('tbl_agama', function ($join) {
@@ -23,11 +24,11 @@ class DataKependudukan extends Controller
                     })
 
                     ->get();
-        return view('admin/rw/data/data')->with(array('data' => $data));
+        return view('admin/rw/data/agama')->with(array('data' => $data));
 
     }
 
-    public function action(){
+     public function action(){
 
 
                 $start = Input::get('start');
@@ -40,7 +41,7 @@ class DataKependudukan extends Controller
                 $mytime->setTestNow($knownDate);                        // set the mock
 
                 if(empty($_POST)){
-                    return redirect('/data-kependudukan')->with('message','Silahkan isi dulu waktu range nya');
+                    return redirect('/data-agama')->with('message','Silahkan isi dulu waktu range nya');
                 }else{
 
                   $data= DB::table('tbl_jumlah_agama')
@@ -50,10 +51,11 @@ class DataKependudukan extends Controller
                     })
                 ->whereBetween('waktu', [$start,$end])
                 ->get();
-                return view('admin/rw/data/data')->with(array('data' => $data));
+                return view('admin/rw/data/agama')->with(array('data' => $data));
     
                 }
                 
     }
+
 
 }

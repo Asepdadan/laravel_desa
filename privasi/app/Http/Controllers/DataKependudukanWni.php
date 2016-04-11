@@ -11,23 +11,24 @@ use Redirect;
 use View;
 use Carbon;
 use Auth;
-class DataKependudukan extends Controller
+
+class DataKependudukanWni extends Controller
 {
     //
-    public function index()
+       public function index()
     {
-          $data= DB::table('tbl_jumlah_agama')
-                    ->join('tbl_agama', function ($join) {
-                        $join->on('tbl_jumlah_agama.agama_id', '=', 'tbl_agama.id')
+          $data= DB::table('tbl_lahir')
+                    ->join('tbl_rw', function ($join) {
+                        $join->on('tbl_lahir.rw_id', '=', 'tbl_rw.id')
                              ->where('rw_id', '=', Auth::user()->id);
                     })
-
+                    ->where('penduduk','WNI')
                     ->get();
-        return view('admin/rw/data/data')->with(array('data' => $data));
+        return view('admin/rw/data/wni')->with(array('data' => $data));
 
     }
 
-    public function action(){
+     public function action(){
 
 
                 $start = Input::get('start');
@@ -40,20 +41,22 @@ class DataKependudukan extends Controller
                 $mytime->setTestNow($knownDate);                        // set the mock
 
                 if(empty($_POST)){
-                    return redirect('/data-kependudukan')->with('message','Silahkan isi dulu waktu range nya');
+                    return redirect('/data-wni')->with('message','Silahkan isi dulu waktu range nya');
                 }else{
 
-                  $data= DB::table('tbl_jumlah_agama')
-                    ->join('tbl_agama', function ($join) {
-                        $join->on('tbl_jumlah_agama.agama_id', '=', 'tbl_agama.id')
+                  $data= DB::table('tbl_lahir')
+                    ->join('tbl_rw', function ($join) {
+                        $join->on('tbl_lahir.rw_id', '=', 'tbl_rw.id')
                              ->where('rw_id', '=', Auth::user()->id );
                     })
+                    ->where('penduduk','WNI')
                 ->whereBetween('waktu', [$start,$end])
                 ->get();
-                return view('admin/rw/data/data')->with(array('data' => $data));
+                return view('admin/rw/data/wni')->with(array('data' => $data));
     
                 }
                 
     }
+
 
 }

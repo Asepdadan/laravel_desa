@@ -69,7 +69,9 @@
                 </div>          
             </div>
             <div class="col-xs-12 col-sm-8">
-                <h3 style="color:black; font-weight:bold;" class="text-center">KELURAHAN CIHAPIT KECAMATAN BANDUNG WETAN</h3>
+                <h3 style="color:black; font-weight:bold;" class="text-center">KELURAHAN CIHAPIT <br>
+                KECAMATAN BANDUNG WETAN<br>
+                KOTA BANDUNG</h3>
                   <h5 style="color:black; text-align:center; ">Alamat : jl. sabang No 2A Bandung kode pos 40114 telp (022) 4212984</h5>
             </div>
             <div class="col-xs-12 col-sm-3" style="margin-top:30px;">

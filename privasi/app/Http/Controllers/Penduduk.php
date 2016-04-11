@@ -27,7 +27,7 @@ class Penduduk extends Controller
 
         public function action(validasiPenduduk $validasi){
         
-      if(isset($_POST['penduduk'])){
+      
          //jumlah umpi
         DB::table('tbl_jumlah_umpi')->insert(
         array('rw_id' => Input::get('rw_id'), 'wna' => Input::get('wna'),'wni' => Input::get('wni'))
@@ -36,10 +36,10 @@ class Penduduk extends Controller
 
        //jumlah penduduk
         DB::table('tbl_jumlah_penduduk')->insert(
-        array('rw_id' => Input::get('rw_id'), 'L' => Input::get('l'),'P' => Input::get('p'))
+        array('rw_id' => Input::get('rw_id'), 'L' => Input::get('l'),'P' => Input::get('p'), 'penduduk' => Input::get('penduduk'))
         );  
        //jumlah penduduk  
-      }
+      
         
 
         return redirect('/dashbord');

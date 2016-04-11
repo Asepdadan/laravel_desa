@@ -20,16 +20,16 @@
                <div class="tabs">
                              <ul class="nav nav-tabs">
                                   <li class="active">
-                                        <a href="{{ URL::to('/kependudukan-agama') }}" >Jumlah Agama</a>
+                                        <a href="{{ URL::to('/data-agama') }}" >Jumlah Agama</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('/kependudukan-penduduk') }}" >Jumlah Penduduk</a>
+                                        <a href="{{ URL::to('/data-penduduk') }}" >Jumlah Penduduk</a>
                                     </li>
                                     <li>
-                                        <a href="{{ URL::to('/kependudukan-wna') }}" >WNA</a>
+                                        <a href="{{ URL::to('/data-wna') }}" >WNA</a>
                                     </li>
                                        <li>
-                                        <a href="{{ URL::to('/kependudukan-wni') }}" >WNI</a>
+                                        <a href="{{ URL::to('/data-wni') }}" >WNI</a>
                                     </li>
                                      <li>
                                         <a href="{{ URL::to('/kependudukan-pendidikan') }}">Pendidikan</a>
@@ -75,11 +75,8 @@
                                     </div>
 
 
-                                    {{Form::open(['url' => '/action-kependudukan'])}}
-                                            <div class="form-group">
-                                                <legend>Form title</legend>
-                                            </div>
-                                    
+                                    {{Form::open(['url' => '/action-agama'])}}
+                                                                 
                                      <div class="form-group">
                                                 <label class="col-md-3 control-label">Date range</label>
                                                 <div class="col-md-6">
@@ -87,9 +84,9 @@
                                                         <span class="input-group-addon">
                                                             <i class="fa fa-calendar"></i>
                                                         </span>
-                                                        <input type="text" class="form-control" name="start">
+                                                        <input type="date" class="form-control" name="start" required>
                                                         <span class="input-group-addon">Sampai</span>
-                                                        <input type="text" class="form-control" name="end">
+                                                        <input type="date" class="form-control" name="end" required>
                                                         <span class="input-group-addon">
                                                             <button type="submit" class="btn btn-success"><i class="fa fa-search"></i></button>
                                                         </span>
@@ -100,16 +97,10 @@
 
                                     </form>
 
-                                    @if($errors->has())
-                                    <span class="label label-danger">
-                                     {!! $errors->first('1') !!}<br>
-                                     {!! $errors->first('2') !!}<br>
-                                     {!! $errors->first('3') !!}<br>
-                                     {!! $errors->first('4') !!}<br>
-                                     {!! $errors->first('5') !!}<br>
-                                     {!! $errors->first('6') !!}
-                                    </span>
-                                    @endif
+                             @if(Session::has('message'))
+                                <h4><span class="label label-success">{{ Session::get('message') }}</span></h4>
+                            @endif
+                                   
                                    
                                     <div class="table-responsive">
                                         <table class="table table-bordered">
@@ -118,12 +109,14 @@
                                                     <th   class="text-center">No</th>
                                                     <th   class="text-center">Agama</th>
                                                     <th   class="text-center">Jumlah</th>
+                                                    <th   class="text-center">Waktu</th>
+                                                    <th   class="text-center">Action</th>
                                                 </tr>
                                                
                                             </thead>
-                                            <tbody>
+                                            <tbody class="text-center">
                                             
-                                                {{ $no = 1 }}
+                                                <?php $no = 1; ?>
                                                 @foreach($data as $row)
                                                 <tr>
                                                     <td>{{ $no++}} </td>   
@@ -131,6 +124,9 @@
                                                     <td>{{ $row->agama}}</td>   
                                              
                                                     <td>{{ $row->jumlah}}</td>   
+                                                    <td>{{ $row->waktu}}</td>   
+                                                    <td><a href="">Edit</a></td>
+                                                    
                                                 </tr>
                                             @endforeach
                                             
@@ -147,7 +143,7 @@
                         </div>
                 </div>
 
-        </div>
+               
 </section>
 
                          

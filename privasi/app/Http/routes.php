@@ -43,7 +43,11 @@ Route::group(['middleware' => ['web']], function () {
                         return view('admin/parent');
                     });
 
+                    Route::get('/Input-Kependudukan','InputKependudukan@index');
+                    Route::post('/action_input_kependudukan', 'InputKependudukan@action');
          
+
+
                     Route::get('/kependudukan-penduduk','Penduduk@indexPenduduk');
                     Route::post('/ActionJumlahPenduduk', 'Penduduk@action');
                     Route::get('/kependudukan-agama','KependudukanAgama@indexAgama');
@@ -59,9 +63,19 @@ Route::group(['middleware' => ['web']], function () {
                     Route::get('/kependudukan-umur', 'KependudukanUmur@indexUmur');
                     Route::post('/action_umur','KependudukanUmur@umur');
 
+                    Route::get('data-agama','DataKependudukanAgama@index');
+                    Route::post('action-agama','DataKependudukanAgama@action');
+                    Route::get('data-penduduk','DataKependudukanPenduduk@index');
+                    Route::post('action-penduduk','DataKependudukanPenduduk@action');
+                    Route::get('data-wna','DataKependudukanWna@index');
+                    Route::post('action-wna','DataKependudukanWna@action');
+                    Route::get('data-wni','DataKependudukanWni@index');
+                    Route::post('action-wni','DataKependudukanWni@action');
+                    Route::get('data-pendidikan','DataKependudukanPendidikan@index');
+                    Route::post('action-pendidikan','DataKependudukanPendidikan@action');
 
 
-                     Route::get('data-penduduk','DataKependudukan@index');
+                     Route::get('data-kependuduk','DataKependudukan@index');
                     Route::post('action-kependudukan','DataKependudukan@action');
 
               });
@@ -203,7 +217,6 @@ $laki_laki_lahir = DB::table('tbl_lahir')
                             ->where('penduduk', 'WNA')
                             ->whereBetween('waktu', ['2016-03-01', '2016-04-07'])
                             ->sum('L');
-                    
               
                     echo $users;
                     echo $wni;
